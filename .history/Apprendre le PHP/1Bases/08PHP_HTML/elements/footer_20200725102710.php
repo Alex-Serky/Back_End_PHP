@@ -4,11 +4,9 @@
     <div class="row">
         <div class="col-md-4">
             <?php
-            require_once dirname(__DIR__) . DIRECTORY_SEPARATOR . 'functions' . DIRECTORY_SEPARATOR . 'compteur.php';
+            require_once dirname(__DIR__) . DIRECTORY_SEPARATOR . 'compteur.php';
             ajouter_vue();
-            $vues = nombre_vues();
             ?>
-            Il y a <strong><?= $vues ?></strong> visite<?php if($vues > 1): ?>s<?php endif ?> sur le site.
         </div>
         <div class="col-md-4">
             <form action="/newsletter.php" class="form-inline" method="POST">

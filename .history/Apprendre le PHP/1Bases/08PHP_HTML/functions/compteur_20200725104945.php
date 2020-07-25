@@ -1,0 +1,35 @@
+<?php
+
+function ajouter_vue(){
+    // Le chemin qui mène au compteur
+    $fichier = dirname(__DIR__) . DIRECTORY_SEPARATOR . 'data' . DIRECTORY_SEPARATOR . 'compteur';
+
+
+    // Autre méthode
+    $compteur = 1; // on initialise le fichier avec la valeur 1
+    if(file_exists($fichier)){
+        // Si le fichier existe, on incrémente
+        $compteur =  (int)file_get_contents($fichier);
+        $compteur++;
+    }
+    file_put_contents($fichier, $compteur);
+
+/*
+
+    // Première méthode
+    if (file_exists($fichier)) {
+        // Si le fichier existe, on incrémente
+        $compteur =  (int)file_get_contents($fichier);
+        $compteur++;
+        file_put_contents($fichier, $compteur);
+    }else{
+        // Sinon, on crée le fichier avec la valeur 1
+        file_put_contents($fichier, '1');
+    }
+*/
+}
+
+function nombre_vues(){
+    $fichier = dirname(__DIR__) . DIRECTORY_SEPARATOR . 'data' . DIRECTORY_SEPARATOR . 'compteur';
+    return file_get_contents($fichier);
+}
