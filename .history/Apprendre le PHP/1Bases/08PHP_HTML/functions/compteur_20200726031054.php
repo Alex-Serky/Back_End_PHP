@@ -50,18 +50,18 @@ function nombre_vues_mois(int $annee, int $mois):int {
     return $total;
 }
 
-function nombre_vues_detail_mois(int $annee, int $mois):array {
+function nombre_vues_detail_mois(int $annee, int $mois):int {
     $mois = str_pad($mois, 2, '0', STR_PAD_LEFT);
-    $fichier = dirname(__DIR__) . DIRECTORY_SEPARATOR . 'data' . DIRECTORY_SEPARATOR . 'compteur-' . $annee . '-' . $mois . '-' . '*';
+    $fichier = dirname(__DIR__) . DIRECTORY_SEPARATOR . 'data' . DIRECTORY_SEPARATOR . 'compteur-' . $annee . '-' .$mois;
     $fichiers = glob($fichier);
     $visites = [];
     foreach ($fichiers as $fichier) {
         $parties = explode('-', basename($fichier));
-        $visites[] = [
+        $visites = [
             'annee' => $parties[1],
             'mois' => $parties[2],
             'jour' => $parties[3],
-            'visites' => file_get_contents($fichier)
+            'visites' => $parties[4]
         ];
     }
     return $visites;
