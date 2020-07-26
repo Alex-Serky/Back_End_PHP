@@ -1,9 +1,10 @@
 <?php
 
-require_once 'functions/auth.php';
-forcer_utilisateur_connecte();
+require 'functions/auth.php';
+var_dump(est_connecte());
+exit();
 
-require_once 'functions/compteur.php';
+require 'functions/compteur.php';
 $annee = (int)date('Y');
 $annee_selection = empty($_GET['annee']) ? null : (int)$_GET['annee'];
 $mois_selection = empty($_GET['mois']) ? null : $_GET['mois'];
@@ -29,18 +30,18 @@ $mois = [
     '11' => 'Novembre',
     '12' => 'Décembre'
 ];
-require_once 'elements/header.php';
+require 'elements/header.php';
 ?>
 
 <div class="row">
     <div class="col-md-4">
         <div class="list-group">
-            <?php for ($i = 0; $i < 5; $i++) : ?>
+            <?php for ($i = 0; $i < 5; $i++): ?>
                 <a class="list-group-item <?= $annee - $i === $annee_selection ? 'active' : ''; ?>" href="dashboard.php?annee=<?= $annee - $i ?>"><?= $annee - $i ?></a>
-                <?php if ($annee - $i === $annee_selection) : ?>
+                <?php if($annee - $i === $annee_selection ): ?>
                     <div class="list-group">
-                        <?php foreach ($mois as $numero => $nom) : ?>
-                            <a class="list-group-item <?= $numero === $mois_selection ? 'active' : '' ?>" href="dashboard.php?annee=<?= $annee_selection ?>&mois=<?= $numero ?>">
+                        <?php foreach($mois as $m => $nom): ?>
+                            <a class="list-group-item <?= $m === $mois_selection ? 'active' : ''?>" href="dashboard.php?annee=<?= $annee_selection ?>&mois=<?= $m ?>">
                                 <?= $nom ?>
                             </a>
                         <?php endforeach ?>
@@ -52,29 +53,29 @@ require_once 'elements/header.php';
     <div class="col-md-8">
         <div class="card mb-4">
             <div class="card-body">
-                <strong style="font-size:3em"><?= $total ?></strong><br>
-                Visite<?= $total > 1 ? 's' : '' ?> total
+                <strong style="font-size:3em"><?= $total ?></strong><br />
+                Visite<?= $total > 1 ? 's' : '' ?> totale<?= $total > 1 ? 's' : '' ?>
             </div>
         </div>
-        <?php if (isset($detail)) : ?>
+        <?php if(isset($detail)): ?>
             <h2>Détails des visites pour le mois</h2>
             <table class="table table-striped">
                 <thead>
                     <tr>
-                        <th>Jour</th>
-                        <th>Mois</th>
                         <th>Année</th>
+                        <th>Mois</th>
+                        <th>Jour</th>
                         <th>Nombre de visites</th>
                     </tr>
                 </thead>
                 <tbody>
-                    <?php foreach ($detail as $ligne) : ?>
-                        <tr>
-                            <td><?= $ligne['jour'] ?></td>
-                            <td><?= $ligne['mois'] ?></td>
-                            <td><?= $ligne['annee'] ?></td>
-                            <td><?= $ligne['visites'] ?> visite<?= $ligne['visites'] > 1 ? 's' : '' ?></td>
-                        </tr>
+                    <?php foreach($detail as $ligne): ?>
+                    <tr>
+                        <td><?= $ligne['annee'] ?></td>
+                        <td><?= $ligne['mois'] ?></td>
+                        <td><?= $ligne['jour'] ?></td>
+                        <td><?= $ligne['visites'] ?> visite<?= $ligne['visites'] > 1 ? 's' : '' ?></td>
+                    </tr>
                     <?php endforeach ?>
                 </tbody>
             </table>
@@ -82,4 +83,5 @@ require_once 'elements/header.php';
     </div>
 </div>
 
-<?php require_once 'elements/footer.php'; ?>
+
+<?php require 'elements/footer.php'; ?>

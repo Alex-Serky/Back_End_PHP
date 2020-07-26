@@ -1,13 +1,5 @@
-<?php
-
-if (session_status() === PHP_SESSION_NONE) {
-    session_start();
-}
-
-require_once dirname(__DIR__) . DIRECTORY_SEPARATOR . 'functions.php';
-require_once dirname(__DIR__) . DIRECTORY_SEPARATOR . 'functions' . DIRECTORY_SEPARATOR . 'auth.php';
-
-?>
+<?php require_once dirname(__DIR__) . DIRECTORY_SEPARATOR . 'functions.php'; ?>
+<?php require_once dirname(__DIR__) . DIRECTORY_SEPARATOR . 'functions' . DIRECTORY_SEPARATOR . 'auth.php'; ?>
 
 <!doctype html>
 <html lang="en">
@@ -49,7 +41,7 @@ require_once dirname(__DIR__) . DIRECTORY_SEPARATOR . 'functions' . DIRECTORY_SE
             <ul class="navbar-nav">
                 <?php if(est_connecte()): ?>
                     <li class="nav-item">
-                        <a href="/logout.php" class="nav-link">Se déconnecter</a>
+                        <a href="/logout.php">Se déconnecter</a>
                     </li>
                 <?php endif ?>
             </ul>

@@ -1,6 +1,6 @@
 <?php
 
-function ajouter_vue(): void {
+function ajouter_vue(){
     // Le chemin qui mène au compteur
     $fichier = dirname(__DIR__) . DIRECTORY_SEPARATOR . 'data' . DIRECTORY_SEPARATOR . 'compteur';
     $fichier_journalier = $fichier . '-' . date('Y-m-d');
@@ -39,13 +39,13 @@ function nombre_vues(){
     return file_get_contents($fichier);
 }
 
-function nombre_vues_mois(int $annee, int $mois): int {
+function nombre_vues_mois(int $annee, int $mois):int {
     $mois = str_pad($mois, 2, '0', STR_PAD_LEFT);
-    $fichier = dirname(__DIR__) . DIRECTORY_SEPARATOR . 'data' . DIRECTORY_SEPARATOR . 'compteur-' . $annee . '-' . $mois . '-' . '*';
+    $fichier = dirname(__DIR__) . DIRECTORY_SEPARATOR . 'data' . DIRECTORY_SEPARATOR . 'compteur-' . $annee . '-' .$mois;
     $fichiers = glob($fichier);
     $total = 0;
     foreach ($fichiers as $fichier) {
-        $total += (int)file_get_contents($fichier);
+        $total = (int)file_get_contents($fichier);
     }
     return $total;
 }
@@ -56,13 +56,13 @@ function nombre_vues_detail_mois(int $annee, int $mois):array {
     $fichiers = glob($fichier);
     $visites = [];
     foreach ($fichiers as $fichier) {
-        $parties = explode('-', basename($fichier)); // Récupérer la dernière partie (explode) du nom du fichier (basename)
+        $parties = explode('-', basename($fichier));
         $visites[] = [
-            'jour' => $parties[1],
+            'annee' => $parties[1],
             'mois' => $parties[2],
-            'annee' => $parties[3],
+            'jour' => $parties[3],
             'visites' => file_get_contents($fichier)
-        ]; // On utilise la fonction push pour tout mettre dans le grand tableau
+        ];
     }
     return $visites;
 }

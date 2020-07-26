@@ -39,8 +39,8 @@ require_once 'elements/header.php';
                 <a class="list-group-item <?= $annee - $i === $annee_selection ? 'active' : ''; ?>" href="dashboard.php?annee=<?= $annee - $i ?>"><?= $annee - $i ?></a>
                 <?php if ($annee - $i === $annee_selection) : ?>
                     <div class="list-group">
-                        <?php foreach ($mois as $numero => $nom) : ?>
-                            <a class="list-group-item <?= $numero === $mois_selection ? 'active' : '' ?>" href="dashboard.php?annee=<?= $annee_selection ?>&mois=<?= $numero ?>">
+                        <?php foreach ($mois as $m => $nom) : ?>
+                            <a class="list-group-item <?= $m === $mois_selection ? 'active' : '' ?>" href="dashboard.php?annee=<?= $annee_selection ?>&mois=<?= $m ?>">
                                 <?= $nom ?>
                             </a>
                         <?php endforeach ?>
@@ -52,7 +52,7 @@ require_once 'elements/header.php';
     <div class="col-md-8">
         <div class="card mb-4">
             <div class="card-body">
-                <strong style="font-size:3em"><?= $total ?></strong><br>
+                <strong style="font-size:3em"><?= $total ?></strong><br />
                 Visite<?= $total > 1 ? 's' : '' ?> total
             </div>
         </div>
@@ -81,5 +81,6 @@ require_once 'elements/header.php';
         <?php endif ?>
     </div>
 </div>
+
 
 <?php require_once 'elements/footer.php'; ?>

@@ -1,6 +1,6 @@
 <?php
 
-function ajouter_vue(): void {
+function ajouter_vue(){
     // Le chemin qui mène au compteur
     $fichier = dirname(__DIR__) . DIRECTORY_SEPARATOR . 'data' . DIRECTORY_SEPARATOR . 'compteur';
     $fichier_journalier = $fichier . '-' . date('Y-m-d');
@@ -41,7 +41,7 @@ function nombre_vues(){
 
 function nombre_vues_mois(int $annee, int $mois): int {
     $mois = str_pad($mois, 2, '0', STR_PAD_LEFT);
-    $fichier = dirname(__DIR__) . DIRECTORY_SEPARATOR . 'data' . DIRECTORY_SEPARATOR . 'compteur-' . $annee . '-' . $mois . '-' . '*';
+    $fichier = dirname(__DIR__) . DIRECTORY_SEPARATOR . 'data' . DIRECTORY_SEPARATOR . 'compteur-' . $annee . '-' .$mois;
     $fichiers = glob($fichier);
     $total = 0;
     foreach ($fichiers as $fichier) {
