@@ -37,7 +37,6 @@ function radio(string $name, string $value, array $data): string {
         $attributes .= 'checked';
     }
 
-    // Heredoc
     return <<<HTML
     <input type="radio" name="{$name}" value="$value" $attributes>
 HTML;
