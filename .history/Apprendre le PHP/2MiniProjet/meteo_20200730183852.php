@@ -6,10 +6,10 @@ $error = null;
 try {
     $forecast = $weather->getForecast('La Roche-sur-Yon,fr');
     $today = $weather->getToday('La Roche-sur-Yon,fr');
-} catch (CurlException $e) {
-    exit($e->getMessage());
-} catch (HTTPException $e) {
-    $error = $e->getCode() . ' : ' . $e->getMessage();
+} catch (APIException $e) {
+    $error = 'Erreur API';
+} catch (Exception $e) {
+    $error = "Erreur classique";
 }
 
 require_once 'elements/header.php';

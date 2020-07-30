@@ -1,8 +1,6 @@
 <?php
 
-require_once 'CurlException.php';
-require_once 'HTTPException.php';
-require_once 'UnauthorizedHTTPException.php';
+require_once 'APIException.php';
 class OpenWeather {
 
     private $apiKey;
@@ -45,16 +43,12 @@ class OpenWeather {
         ]);
         $data = curl_exec($curl);
         if ($data === false) {
-            throw new CurlException($curl);
-        }
-        $code = curl_getinfo($curl, CURLINFO_HTTP_CODE);
-        if ($code !== 200) {
+            $error = curl_error($curl);
             curl_close($curl);
-            if ($code === 401) {
-                $data = json_decode($data, true); // True pour avoir un tableau associatif
-                throw new UnauthorizedHTTPException($data['message'], 401);
-            }
-            throw new HTTPException($data, $code);
+            throw new Exception($error);
+        }
+        if (curl_getinfo($curl, CURLINFO_HTTP_CODE) !== 200) {
+            throw new Exception($data);
         }
         curl_close($curl);
         return json_decode($data, true);

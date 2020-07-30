@@ -51,8 +51,8 @@ class OpenWeather {
         if ($code !== 200) {
             curl_close($curl);
             if ($code === 401) {
-                $data = json_decode($data, true); // True pour avoir un tableau associatif
-                throw new UnauthorizedHTTPException($data['message'], 401);
+                $data = json_decode($data, true);
+                throw new UnauthorizedHTTPException($data, 401);
             }
             throw new HTTPException($data, $code);
         }

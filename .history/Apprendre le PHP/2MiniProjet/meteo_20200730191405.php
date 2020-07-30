@@ -1,7 +1,7 @@
 <?php
 
 require_once 'class/OpenWeather.php';
-$weather = new OpenWeather('94c6cf0868fa5cb930a5e2d71baf0dbf');
+$weather = new OpenWeather('94c60868fa5cb930a5e2d71baf0dbf');
 $error = null;
 try {
     $forecast = $weather->getForecast('La Roche-sur-Yon,fr');
