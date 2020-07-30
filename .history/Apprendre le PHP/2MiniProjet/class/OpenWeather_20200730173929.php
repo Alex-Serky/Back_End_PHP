@@ -40,12 +40,8 @@ class OpenWeather {
             CURLOPT_TIMEOUT_MS => 10
         ]);
         $data = curl_exec($curl);
-        if ($data === false) {
-            $error = curl_error($curl);
-            throw new Exception($error);
-        }
-        if (curl_getinfo($curl, CURLINFO_HTTP_CODE) !== 200) {
-            throw new Exception($data);
+        if ($data === false || curl_getinfo($curl, CURLINFO_HTTP_CODE) !== 200) {
+            return null;
         }
         return json_decode($data, true);
     }
