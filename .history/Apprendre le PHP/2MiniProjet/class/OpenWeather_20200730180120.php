@@ -15,13 +15,10 @@ class OpenWeather {
         } catch (Exception $e) {
             return [
                 'temp' => 0,
-                'description' => "la météo est momentanément indisponible.",
+                'description' => "La météo est momentanément indisponible.",
                 'date' => new DateTime()
             ];
-        }// Très peu utilisé
-        // finally{
-
-        // }
+        }
         return [
             'temp' => $data['main']['temp'],
             'description' => $data['weather'][0]['description'],
@@ -57,13 +54,11 @@ class OpenWeather {
         $data = curl_exec($curl);
         if ($data === false) {
             $error = curl_error($curl);
-            curl_close($curl);
             throw new Exception($error);
         }
         if (curl_getinfo($curl, CURLINFO_HTTP_CODE) !== 200) {
             throw new Exception($data);
         }
-        curl_close($curl);
         return json_decode($data, true);
     }
 
