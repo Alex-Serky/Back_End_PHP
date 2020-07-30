@@ -10,7 +10,18 @@ class OpenWeather {
 
     public function getToday(string $city): ?array
     {
-        $data = $this->callAPI("weather?q={$city}");
+        try {
+            $data = $this->callAPI("weather?q={$city}");
+        } catch (Exception $e) {
+            return [
+                'temp' => 0,
+                'description' => "la météo est momentanément indisponible.",
+                'date' => new DateTime()
+            ];
+        }// Très peu utilisé
+        // finally{
+
+        // }
         return [
             'temp' => $data['main']['temp'],
             'description' => $data['weather'][0]['description'],
@@ -20,7 +31,11 @@ class OpenWeather {
 
     public function getForecast(string $city): ?array
     {
-        $data = $this->callAPI("forecast/daily?q={$city}");
+        try {
+            $data = $this->callAPI("forecast/daily?q={$city}");
+        } catch (Exception $e) {
+            return [];
+        }
         foreach($data['list'] as $day) {
             $results[] = [
                 'temp' => $day['temp']['day'],

@@ -37,7 +37,7 @@ class OpenWeather {
         curl_setopt_array($curl, [
             CURLOPT_RETURNTRANSFER => true,
             CURLOPT_CAINFO => dirname(__DIR__) . DIRECTORY_SEPARATOR . 'cert.cer',
-            CURLOPT_TIMEOUT => 1
+            CURLOPT_TIMEOUT_MS => 10
         ]);
         $data = curl_exec($curl);
         if ($data === false) {
