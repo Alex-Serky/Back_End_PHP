@@ -1,13 +1,16 @@
 <?php
 
-declare(strict_types = 1); // Rend PHP plus strict dans le traitement des erreurs
+declare(strict_types = 1);
 require_once 'class/OpenWeather.php';
 $weather = new OpenWeather('94c6cf0868fa5cb930a5e2d71baf0dbf');
 $error = null;
 try {
+    $data = explode(' ');
     $forecast = $weather->getForecast('La Roche-sur-Yon,fr');
     $today = $weather->getToday('La Roche-sur-Yon,fr');
-} catch (Exception | Error $e) {
+} catch (Exception $e) {
+    $error = $e->getMessage();
+} catch (Exception $e) {
     $error = $e->getMessage();
 }
 
