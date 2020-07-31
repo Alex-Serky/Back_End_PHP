@@ -3,13 +3,6 @@
 require_once 'CurlException.php';
 require_once 'HTTPException.php';
 require_once 'UnauthorizedHTTPException.php';
-
-/**
- * Gère l'API d'OpenWeather.
- *
- * @author  Alex Serky <aserky@gmail.com>
- *
- */
 class OpenWeather {
 
     private $apiKey;
@@ -19,12 +12,6 @@ class OpenWeather {
         $this->apiKey = $apiKey;
     }
 
-    /**
-     * Récupère les informations météorologiques du jour
-     *
-     * @param  string $city Ville (ex: "La Rochr-sur-Yon, FR")
-     * @return array
-     */
     public function getToday(string $city): ?array
     {
         $data = $this->callAPI("weather?q={$city}");
@@ -35,12 +22,6 @@ class OpenWeather {
         ];
     }
 
-    /**
-     * Récupérer les prévisions sur plusieurs jours
-     *
-     * @param string $city
-     * @return array|null
-     */
     public function getForecast(string $city): ?array
     {
         $data = $this->callAPI("forecast/daily?q={$city}");
@@ -54,15 +35,6 @@ class OpenWeather {
         return $results;
     }
 
-    /**
-     * Appelle l'API Open weather
-     *
-     * @param string $endpoint Action à appeler (weather, weather/forecast)
-     * @throws CurlException Curl a rencontré une erreur
-     * @throws UnauthorizedHTTPException
-     * @throws HTTPException
-     * @return array|null
-     */
     private function callAPI(string $endpoint): ?array
     {
         $curl = curl_init("http://api.openweathermap.org/data/2.5/{$endpoint}&units=metric&lang=fr&APPID={$this->apiKey}&units=metric&lang=fr");
