@@ -21,7 +21,7 @@ try {
     }
 
     $query = $pdo->query('SELECT * from posts');
-
+    
     /** @var Post[] Tableau d'articles */
     $posts = $query->fetchAll(PDO::FETCH_CLASS, 'Post');
 } catch (PDOException $e) {

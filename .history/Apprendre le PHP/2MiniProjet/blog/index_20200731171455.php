@@ -21,8 +21,6 @@ try {
     }
 
     $query = $pdo->query('SELECT * from posts');
-
-    /** @var Post[] Tableau d'articles */
     $posts = $query->fetchAll(PDO::FETCH_CLASS, 'Post');
 } catch (PDOException $e) {
     $error = $e->getMessage();
@@ -40,13 +38,10 @@ require_once '../elements/header.php';
     <?php else : ?>
         <?php foreach ($posts as $post) : ?>
             <h2>
-                <a href="/blog/edit.php?id=<?= $post->id ?>"><?= htmlentities($post->name) ?></a>
+                <a href="/blog/edit.php?id<?= $post->id ?>"><?= htmlentities($post->name) ?></a>
             </h2>
-            <p class="small text-muted">
-                Ecrit le <?= $post->created_at->format('d/m/Y à H:i') ?>
-            </p>
             <p>
-                <?= nl2br(htmlentities($post->getExcerpt())) ?>
+                <?= nl2br(htmlentities($post->content)) ?>
             </p>
         <?php endforeach ?>
         <form action="" method="post">
