@@ -43,9 +43,6 @@ require_once '../elements/header.php';
             <p class="small text-muted">
                 Ecrit le <?= $post->created_at->format('d/m/Y à H:i') ?>
             </p>
-            <!-- <p>
-                <?= nl2br(htmlentities($post->getExcerpt())) ?>
-            </p> -->
             <p>
                 <?= $post->getBody() ?>
             </p>

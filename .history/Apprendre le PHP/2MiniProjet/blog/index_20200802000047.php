@@ -37,6 +37,7 @@ require_once '../elements/header.php';
         </div>
     <?php else : ?>
         <?php foreach ($posts as $post) : ?>
+            <?php var_dump($post) ?>
             <h2>
                 <a href="/blog/edit.php?id=<?= $post->id ?>"><?= htmlentities($post->name) ?></a>
             </h2>
