@@ -1,13 +1,8 @@
 <?php
 
-use Alexis\Guestbook\{
-    Message,
-    GuestBook
-};
-
+require_once 'class/contact/Message.php';
 require_once 'class/Message.php';
 require_once 'class/GuestBook.php';
-require_once 'class/contact/Message.php';
 
 $errors = null;
 $success = false;

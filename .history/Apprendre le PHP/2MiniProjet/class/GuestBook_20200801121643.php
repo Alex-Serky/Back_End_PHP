@@ -1,8 +1,5 @@
 <?php
 
-namespace Alexis\Guestbook;
-
-
 require_once 'Message.php';
 
 class GuestBook
@@ -33,7 +30,7 @@ class GuestBook
         $lines =explode(PHP_EOL, $content); // On récupère chaque ligne du fichier individuellement
         $messages = [];
         foreach ($lines as $line) {
-            $messages[] = Message::fromJSON($line);
+            $messages[] = \Alexis\Guestbook\Message::fromJSON($line);
         }
         return array_reverse($messages);
     }

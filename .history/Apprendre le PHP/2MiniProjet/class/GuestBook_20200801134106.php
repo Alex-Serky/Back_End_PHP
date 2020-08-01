@@ -1,7 +1,6 @@
 <?php
 
-namespace Alexis\Guestbook;
-
+use Alexis\Guestbook\Message;
 
 require_once 'Message.php';
 

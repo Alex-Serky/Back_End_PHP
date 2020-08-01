@@ -2,9 +2,6 @@
 
 namespace Alexis\GuestBook;
 
-use DateTime;
-use DateTimeZone;
-
 class Message
 {
     const LIMIT_USERNAME = 3;
@@ -16,14 +13,14 @@ class Message
     public static function fromJSON(string $json): Message
     {
         $data = json_decode($json, true);
-        return new self($data['username'], $data['message'], new DateTime("@" . $data['date']));
+        return new self($data['username'], $data['message'], new \DateTime("@" . $data['date']));
     }
 
-    public function __construct(string $username, string $message, ?DateTime $date = null)
+    public function __construct(string $username, string $message, ?\DateTime $date = null)
     {
         $this->username = $username; // On définit pour la propriété username la valeur qui sera passer au niveau du constructeur
         $this->message = $message;
-        $this->date = $date ?: new DateTime(); // Je veux que tu crées une date et s'il n'y en a pas, tu crées la date du jour.
+        $this->date = $date ?: new \DateTime(); // Je veux que tu crées une date et s'il n'y en a pas, tu crées la date du jour.
     }
 
 
@@ -50,7 +47,7 @@ class Message
     public function toHTML(): string
     {
         $username = htmlentities($this->username);
-        $this->date->setTimezone(new DateTimeZone('Europe/Paris'));
+        $this->date->setTimezone(new \DateTimeZone('Europe/Paris'));
         $date = $this->date->format('d/m/Y à H:i');
         $message = nl2br(htmlentities($this->message));  // nl2br permet d'insérer un retour à la ligne HTML à chaque nouvelle ligne.
         return <<<HTML

@@ -1,9 +1,7 @@
 <?php
 
-namespace Alexis\GuestBook;
+namespace Alexis\Guestbook;
 
-use DateTime;
-use DateTimeZone;
 
 class Message
 {

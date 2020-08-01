@@ -1,9 +1,5 @@
 <?php
 
-namespace Alexis\GuestBook;
-
-use DateTime;
-use DateTimeZone;
 
 class Message
 {
@@ -52,7 +48,7 @@ class Message
         $username = htmlentities($this->username);
         $this->date->setTimezone(new DateTimeZone('Europe/Paris'));
         $date = $this->date->format('d/m/Y à H:i');
-        $message = nl2br(htmlentities($this->message));  // nl2br permet d'insérer un retour à la ligne HTML à chaque nouvelle ligne.
+        $message = nl2br(htmlentities($this->message));  // Permet d'insérer un retour à la ligne HTML à chaque nouvelle ligne.
         return <<<HTML
         <p>
             <strong>{$username}</strong> <em>le {$date}</em><br/>
