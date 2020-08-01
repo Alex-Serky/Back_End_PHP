@@ -1,6 +1,6 @@
 <?php
 
-namespace Alexis\Exceptions;
+namespace App\Exceptions;
 
 use Exception;
 

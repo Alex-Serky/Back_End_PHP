@@ -1,10 +1,10 @@
 <?php
 
-require 'vendor/autoload.php';
+require '../vendor/autoload.php';
 
 use App\Guestbook\{
-    GuestBook,
-    Message
+    Message,
+    GuestBook
 };
 
 $errors = null;

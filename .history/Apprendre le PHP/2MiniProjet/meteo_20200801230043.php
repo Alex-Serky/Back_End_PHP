@@ -32,4 +32,4 @@ require_once 'elements/header.php';
 <?php endif ?>
 
 <?php require_once 'elements/footer.php'; ?>
-
+use App\OpenWeather;

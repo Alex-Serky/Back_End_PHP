@@ -1,6 +1,6 @@
 <?php
 
-namespace Alexis\Guestbook;
+namespace App\Guestbook;
 
 
 require_once 'Message.php';

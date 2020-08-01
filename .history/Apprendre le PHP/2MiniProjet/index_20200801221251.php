@@ -2,9 +2,9 @@
 
 require 'vendor/autoload.php';
 
-use App\Guestbook\{
-    GuestBook,
-    Message
+use Alexis\Guestbook\{
+    Message,
+    GuestBook
 };
 
 $errors = null;

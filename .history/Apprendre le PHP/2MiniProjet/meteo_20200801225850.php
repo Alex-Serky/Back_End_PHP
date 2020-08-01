@@ -1,9 +1,10 @@
 <?php
 
-use App\OpenWeather;
-require_once 'vendor/autoload.php';
+declare(strict_types = 1); // Rend PHP plus strict dans le traitement des erreurs
 
-// declare(strict_types = 1); // Rend PHP plus strict dans le traitement des erreurs
+use App\OpenWeather;
+
+require_once 'vendor/autoload.php';
 $weather = new OpenWeather('94c6cf0868fa5cb930a5e2d71baf0dbf');
 $error = null;
 try {
@@ -32,4 +33,4 @@ require_once 'elements/header.php';
 <?php endif ?>
 
 <?php require_once 'elements/footer.php'; ?>
-
+use App\OpenWeather;

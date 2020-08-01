@@ -1,6 +1,6 @@
 <?php
 
-namespace Alexis\GuestBook;
+namespace App\Guestbook;
 
 use DateTime;
 use DateTimeZone;

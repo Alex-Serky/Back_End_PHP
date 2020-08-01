@@ -1,7 +1,5 @@
 <?php
 
-use App\Post;
-
 require_once '../vendor/autoload.php';
 require_once '../elements/cnx.php';
 
@@ -21,7 +19,7 @@ try {
     $query = $pdo->query('SELECT * from posts');
 
     /** @var Post[] Tableau d'articles */
-    $posts = $query->fetchAll(PDO::FETCH_CLASS, Post::class);
+    $posts = $query->fetchAll(PDO::FETCH_CLASS, 'App\Post');
 } catch (PDOException $e) {
     $error = $e->getMessage();
 }
