@@ -1,0 +1,55 @@
+<?php
+
+require 'vendor/autoload.php';
+
+class Demo {
+
+    private $eleves = [
+        [
+            'nom' => 'Anne',
+            'age' => 18,
+            'moyenne' => 15
+        ],
+        [
+            'nom' => 'Marc',
+            'age' => 21,
+            'moyenne' => 13
+        ],
+        [
+            'nom' => 'Jean',
+            'age' => 20,
+            'moyenne' => 18
+        ],
+        [
+            'nom' => 'Gabin',
+            'age' => 25,
+            'moyenne' => 9
+        ],
+        [
+            'nom' => 'Blandine',
+            'age' => 20,
+            'moyenne' => 7
+        ]
+    ];
+
+    // public function bonsEleves() {
+    //     return array_filter($this->eleves, function ($eleve) {
+    //         return $eleve['moyenne'] < 10;
+    //     });
+    // }
+
+    /* Autre méthode */
+
+    private function filterFonction($eleve)
+    {
+        return $eleve['moyenne'] > 10;
+    }
+
+    public function bonsEleves () {
+        return array($this->eleves, [$this, 'filterFonction']);
+    }
+}
+
+$demo = new Demo();
+dump($demo->bonsEleves());
+// dump($demo->agesEleves());
