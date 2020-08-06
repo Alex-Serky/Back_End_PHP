@@ -5,7 +5,9 @@ $uri = $_SERVER['REQUEST_URI'];
 /* Documentation de AltoRouter via packagist.org */
 $router = new AltoRouter();
 
-require '../config/routes.php';
+$router->map('GET', '/', 'home');
+$router->map('GET', '/nous-contacter', 'contact', 'contact');
+$router->map('GET', '/blog/[*:slug]-[i:id]', 'blog/article', 'article');
 
 $match = $router->match();
 if (is_array($match)) {
