@@ -55,9 +55,9 @@ $pages = ceil($count / PER_PAGE);
     <h1>Les Biens immobiliers</h1>
     <form action="" class="mb-4">
         <div class="form-group">
-            <input type="text" class="form-control" name="q" placeholder="Rechercher par ville" value="<?= htmlentities($_GET['q'] ?? null) ?>">
+            <input type="text" class="form-control mb-2" name="q" placeholder="Rechercher par ville" value="<?= htmlentities($_GET['q'] ?? null) ?>">
+            <button class="btn btn-primary">Rechercher</button>
         </div>
-        <button class="btn btn-primary">Rechercher</button>
     </form>
     <table class="table table-striped">
         <thead>

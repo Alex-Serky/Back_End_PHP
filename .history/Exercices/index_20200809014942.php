@@ -1,7 +1,6 @@
 <?php
 
 use App\NumberHelper;
-use App\URLHelper;
 
 define('PER_PAGE', 20);
 
@@ -12,18 +11,18 @@ $pdo = new PDO("sqlite:./data.sql", null, null, [
 ]);
 
 $query = "SELECT * FROM products";
-$queryCount = "SELECT COUNT(id) as count FROM products";
+$queryCount = "SELECT COUNT(id) AS count FROM products";
 $params = [];
 
 // Recherche par ville
 if (!empty($_GET['q'])) {
     $query .= " WHERE city LIKE :city";
-    $queryCount .= " WHERE city LIKE :city";
     $params['city'] =  '%' . $_GET['q'] . '%';
 }
 
 // Pagination
 $page = (int)($_GET['p'] ?? 1);
+$offset = 0;
 $offset = ($page - 1) * PER_PAGE;
 
 $query .= " LIMIT " . PER_PAGE . " OFFSET $offset";
@@ -33,9 +32,10 @@ $statement->execute($params);
 $products = $statement->fetchAll();
 
 $statement = $pdo->prepare($queryCount);
-$statement->execute($params);
+$statement->execute();
 $count = (int)$statement->fetch()['count'];
 $pages = ceil($count / PER_PAGE);
+// dd($pages);
 
 ?>
 
@@ -55,9 +55,9 @@ $pages = ceil($count / PER_PAGE);
     <h1>Les Biens immobiliers</h1>
     <form action="" class="mb-4">
         <div class="form-group">
-            <input type="text" class="form-control" name="q" placeholder="Rechercher par ville" value="<?= htmlentities($_GET['q'] ?? null) ?>">
+            <input type="text" class="form-control mb-2" name="q" placeholder="Rechercher par ville" value="<?= htmlentities($_GET['q'] ?? null) ?>">
+            <button class="btn btn-primary">Rechercher</button>
         </div>
-        <button class="btn btn-primary">Rechercher</button>
     </form>
     <table class="table table-striped">
         <thead>
@@ -81,11 +81,11 @@ $pages = ceil($count / PER_PAGE);
             <?php endforeach ?>
         </tbody>
     </table>
-    <?php if ($pages > 1 && $page > 1): ?>
-        <a href="?<?= URLHelper::withParam("p", $page - 1) ?>" class="btn btn-primary">Page précédente</a>
+    <?php if ($pages > 1 && $page < $pages): ?>
+        <a href="?p=<?= $page - 1 ?>" class="btn btn-primary">Page suivante</a>
     <?php endif ?>
     <?php if ($pages > 1 && $page < $pages): ?>
-        <a href="?<?= URLHelper::withParam("p", $page + 1) ?>" class="btn btn-primary">Page suivante</a>
+        <a href="?p=<?= $page + 1 ?>" class="btn btn-primary">Page suivante</a>
     <?php endif ?>
 </body>
 
