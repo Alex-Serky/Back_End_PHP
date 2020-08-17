@@ -25,12 +25,12 @@ if (!empty($_GET['q'])) {
 }
 
 // Organisation
-if (!empty($_GET['sort']) && in_array($_GET['sort'], $sortable)) {
+if (!empty('sort') && in_array($_GET['sort'], $sortable)) {
     $direction = $_GET['dir'] ?? 'asc';
     if (!in_array($direction, ['asc', 'desc'])) { // in_array pour vérifier qu'un élément est dans un tableau
         $direction = 'asc';
     }
-    $query .= " ORDER BY " . $_GET['sort'] . " $direction";
+    $query .= " ORDER BY " . $GET['sort'] . " $direction";
 }
 
 // Pagination
@@ -93,10 +93,10 @@ $pages = ceil($count / PER_PAGE);
         </tbody>
     </table>
     <?php if ($pages > 1 && $page > 1): ?>
-        <a href="?<?= URLHelper::withParam($_GET, "p", $page - 1) ?>" class="btn btn-primary">Page précédente</a>
+        <a href="?<?= URLHelper::withParam("p", $page - 1) ?>" class="btn btn-primary">Page précédente</a>
     <?php endif ?>
     <?php if ($pages > 1 && $page < $pages): ?>
-        <a href="?<?= URLHelper::withParam($_GET, "p", $page + 1) ?>" class="btn btn-primary">Page suivante</a>
+        <a href="?<?= URLHelper::withParam("p", $page + 1) ?>" class="btn btn-primary">Page suivante</a>
     <?php endif ?>
 </body>
 

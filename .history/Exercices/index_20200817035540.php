@@ -30,7 +30,7 @@ if (!empty($_GET['sort']) && in_array($_GET['sort'], $sortable)) {
     if (!in_array($direction, ['asc', 'desc'])) { // in_array pour vérifier qu'un élément est dans un tableau
         $direction = 'asc';
     }
-    $query .= " ORDER BY " . $_GET['sort'] . " $direction";
+    $query .= " ORDER BY " . $GET['sort'] . " $direction";
 }
 
 // Pagination
